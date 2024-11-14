@@ -6,6 +6,7 @@ require("dotenv").config({
    * @type { Object.<string, import("knex").Knex.Config> }
    */
   module.exports = {
+    development: {
     client: "postgresql",
     connection: process.env.DB_URL || {
       host: process.env.DB_HOST || "127.0.0.1",
@@ -20,4 +21,5 @@ require("dotenv").config({
     seeds: {
       directory: "./db/seeds",
     },
+    }
   };
