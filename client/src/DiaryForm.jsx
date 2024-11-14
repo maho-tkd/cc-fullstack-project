@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function DiaryForm () {
+export default function DiaryForm () {
 
     return (
         <div className="DiaryForm">
