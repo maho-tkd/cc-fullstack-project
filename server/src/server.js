@@ -17,8 +17,10 @@ const setupExpressServer = () => {
   app.get("/", (req, res) => {
     res.send("hello");
   });
-  app.get("/api/entries", diaryEntryController.getAllEntries);
 
+  app.get("/api/entries", diaryEntryController.getAllEntries);
+  app.post('/api/entries', diaryEntryController.createEntry);
+  app.delete('/api/delete/:id', diaryEntryController.deleteEntry);
 
   return app;
 }
