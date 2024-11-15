@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,101 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #D6BDA5;
+  margin: 0;
+  padding: 20px;
+}
+
+.diarylist-title {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #2D2A29; 
+  margin-bottom: 20px; 
+}
+
+.diaryList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diaryForm {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.form-input {
+  display: flex;
+  align-items: center;  
+  background-color: #FFFEF9; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  margin: 10px 0; 
+  padding: 10px; 
+  width: 80%;
+}
+
+.form-button {
+  background-color: #4CAF50; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+.form-button:hover {
+  background-color: #45a049; 
+}
+
+
+.diary-entry {
+  display: flex;
+  align-items: center;  
+  background-color: #FFFEF9; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  margin: 10px 0; 
+  padding: 10px; 
+  width: 100%;
+  min-width: 700px;
+}
+
+.diary-date-circle {
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%; 
+  background-color: #e0e0e0; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  margin-right: 10px; 
+}
+
+.diary-content {
+  flex: 1; 
+  font-size: 16px; 
+  color: #2D2A29; 
+  margin-right: 10px; 
+}
+
+.delete-button {
+  background-color: #CBA890; 
+  color: #2D2A29; 
+  border: none; 
+  border-radius: 4px; 
+  padding: 8px 12px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+.delete-button:hover {
+  background-color: #cba898; 
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import DiaryList from "./DiaryList";
+import DiaryForm from "./DiaryForm";
 
 // const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -19,11 +20,24 @@ function App() {
     fetchEntries();
   }, []);
 
+  const handleAddEntry = (newEntry) => {
+    setEntries([...entries, newEntry]);
+};
+
+  const handleDeleteEntry = async (id) => {
+    try {
+      await axios.delete(`/api/delete/${id}`);
+      setEntries(entries.filter(entry => entry.id !== id));      
+    } catch (err){
+      console.error("Error delete entry :",err);
+    }
+  }
+
   return (
     <div>
       <h1>Diary App</h1>
-      <DiaryList  entries={ entries }/>
-      {/* <DiaryForm  /> */}
+      <DiaryList  entries={ entries } onAddEntry={handleDeleteEntry}/>
+      <DiaryForm onAddEntry={ handleAddEntry } />
     </div>
   );
 }
