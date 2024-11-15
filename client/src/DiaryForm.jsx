@@ -29,7 +29,7 @@ export default function DiaryForm ({ onAddEntry }) {
                 className="form-input"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="日記を入力..."
+                placeholder="今日はどんな一日だった？"
                 rows="4"
             />
             <button type="submit" className="form-button">
