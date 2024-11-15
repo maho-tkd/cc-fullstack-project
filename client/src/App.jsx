@@ -9,7 +9,6 @@ import DiaryForm from "./DiaryForm";
 
 function App() {
   const [entries, setEntries] = useState([]);
-  const [content, setContent] = useState('');
 
   useEffect(() => {
     const fetchEntries = async () =>{
@@ -21,8 +20,9 @@ function App() {
   }, []);
 
   const handleAddEntry = (newEntry) => {
-    setEntries([...entries, newEntry]);
-};
+    // 新しいエントリーを最上部に追加
+    setEntries(prevEntries => [newEntry, ...prevEntries]);
+  }
 
   const handleDeleteEntry = async (id) => {
     try {
@@ -35,8 +35,8 @@ function App() {
 
   return (
     <div>
-      <h1>Diary App</h1>
-      <DiaryList  entries={ entries } onAddEntry={handleDeleteEntry}/>
+      <h1 className="diaryapp-title">Diary App</h1>
+      <DiaryList  entries={ entries } onDeleteEntry={handleDeleteEntry}/>
       <DiaryForm onAddEntry={ handleAddEntry } />
     </div>
   );
