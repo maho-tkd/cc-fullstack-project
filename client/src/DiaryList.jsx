@@ -1,12 +1,47 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import YearFilter from "./YearFilter";
+
 
 export default function DiaryList ({ entries,onDeleteEntry }) {
+    const [filteredEntries, setFilteredEntries] = useState(entries);
+    const [selectedYear, setSelectedYear] = useState("");
+
+    const getUniqueYears = (entries) => {
+
+        const years = entries.map(entry => new Date(entry.created_at).getFullYear());
+        console.log(years);
+        return [...new Set(years)];
+    };
+
+    const handleYearChange = (year) => {
+        console.log(year);
+        setSelectedYear(year);
+        if (year) {
+            const filtered = entries.filter(entry => new Date(entry.created_at).getFullYear().toString() === year);
+            setFilteredEntries(filtered);
+            console.log(filtered);
+        } else {
+            setFilteredEntries(entries);
+        }
+    };
+
+    useEffect(() => {
+        setFilteredEntries(entries);
+    }, [entries]);
+
+    useEffect(() => {
+        handleYearChange(selectedYear);
+    }, [selectedYear]);
+
+    const uniqueYears = getUniqueYears(entries);
+
     return (
         <div className="diaryList">
             <h3 className="diarylist-title">日記一覧</h3>
+            <YearFilter years={uniqueYears} selectedYear={selectedYear} onYearChange={handleYearChange} />
             <ul>
-                {entries.length > 0 ? (
-                    entries.map((entry) => (
+                {filteredEntries.length > 0 ? (
+                    filteredEntries.map((entry) => (
                         <li key={entry.id} className="diary-entry">
                             <div className="diary-date-circle">
                             {new Date(entry.created_at).getMonth() + 1}/{new Date(entry.created_at).getDate()}
@@ -21,7 +56,7 @@ export default function DiaryList ({ entries,onDeleteEntry }) {
                         </li>
                     ))
                 ) : (
-                    <li>No entries found.</li>
+                    <p>まだ日記がないよ！投稿してみよう〜</p>
                 )}
             </ul>
         </div>
