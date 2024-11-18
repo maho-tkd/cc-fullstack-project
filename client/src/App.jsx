@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     const fetchEntries = async () =>{
       const res = await axios.get("/api/entries");
-      console.log(res);
       setEntries(res.data);
     }
     fetchEntries();

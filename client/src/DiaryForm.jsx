@@ -9,13 +9,10 @@ export default function DiaryForm ({ onAddEntry }) {
         e.preventDefault();
         if (!content) return;
 
-        const newEntry = {content,
-            created_at: new Date().toISOString()
-        };
+        const newEntry = {content};
         
         try{
             const res = await axios.post("/api/entries",newEntry);
-            console.log(res.data);
             onAddEntry(res.data);
             setContent("");
 
