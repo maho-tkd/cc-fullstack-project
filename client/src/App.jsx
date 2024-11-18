@@ -22,6 +22,7 @@ function App() {
   const handleAddEntry = (newEntry) => {
     // 新しいエントリーを最上部に追加
     setEntries(prevEntries => [newEntry, ...prevEntries]);
+    console.log(newEntry);
   }
 
   const handleDeleteEntry = async (id) => {

@@ -40,21 +40,26 @@ export default function DiaryList ({ entries,onDeleteEntry }) {
             <h3 className="diarylist-title">日記一覧</h3>
             <YearFilter years={uniqueYears} selectedYear={selectedYear} onYearChange={handleYearChange} />
             <ul>
-                {filteredEntries.length > 0 ? (
-                    filteredEntries.map((entry) => (
-                        <li key={entry.id} className="diary-entry">
-                            <div className="diary-date-circle">
-                            {new Date(entry.created_at).getMonth() + 1}/{new Date(entry.created_at).getDate()}
-                            </div>
-                            <span className="diary-content">{entry.content}</span>
-                            <button
-                                className="delete-button"
-                                onClick={() => onDeleteEntry(entry.id)}
-                            >
-                                削除
-                            </button>
-                        </li>
-                    ))
+            {filteredEntries.length > 0 ? (
+                    filteredEntries.map((entry) => {
+                        const date = new Date(entry.created_at);
+                        return (
+                            <li key={entry.id} className="diary-entry">
+                                <div className="diary-date-circle">
+                                    {isNaN(date.getTime())
+                                        ? "日付不明"
+                                        : `${date.getMonth() + 1}/${date.getDate()}`} {/* 有効な日付のみ表示 */}
+                                </div>
+                                <span className="diary-content">{entry.content}</span>
+                                <button
+                                    className="delete-button"
+                                    onClick={() => onDeleteEntry(entry.id)}
+                                >
+                                    削除
+                                </button>
+                            </li>
+                        );
+                    })
                 ) : (
                     <p>まだ日記がないよ！投稿してみよう〜</p>
                 )}
